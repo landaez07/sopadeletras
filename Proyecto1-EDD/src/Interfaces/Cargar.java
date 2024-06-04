@@ -5,17 +5,29 @@
  */
 package Interfaces;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author Chris
  */
 public class Cargar extends javax.swing.JFrame {
 
+    public static Menu v1;
+
     /**
      * Creates new form Cargar
      */
-    public Cargar() {
+    public Cargar(Menu v1) {
         initComponents();
+        this.v1 = v1;
+        v1.setVisible(false);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -27,21 +39,123 @@ public class Cargar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        botonAtras = new javax.swing.JButton();
+        botonCargar = new javax.swing.JButton();
+        botonGuardar = new javax.swing.JButton();
+        ruta = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        cargarArchivo = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        botonAtras.setText("Atras");
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+
+        botonCargar.setText("Cargar");
+        botonCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+
+        botonGuardar.setText("Guardar");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, -1, -1));
+        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 330, 30));
+
+        cargarArchivo.setColumns(20);
+        cargarArchivo.setRows(5);
+        jScrollPane1.setViewportView(cargarArchivo);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 350, 200));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        this.setVisible(false);
+        
+        Bienvenida b = new Bienvenida();
+        
+        Menu menu = new Menu(b);
+        
+        menu.setVisible(true);
+     
+    }//GEN-LAST:event_botonAtrasActionPerformed
+
+    private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
+        //Creo el Objeto JFileChooser
+        JFileChooser fc = new JFileChooser();
+
+        //Creo el filtro
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt");
+
+        //Le indico el filtro
+        fc.setFileFilter(filtro);
+
+        //Abrimos la ventana, guardamos la op seleccionada por el usuario
+        int seleccion = fc.showOpenDialog(this);
+
+        //Si el usario presiona aceptar
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+
+            //Selecciono el fichero
+            File fichero = fc.getSelectedFile();
+
+            //Escribir la ruta del fichero
+            this.ruta.setText(fichero.getAbsolutePath());
+
+            try(FileReader fr = new FileReader(fichero)){
+                String cadena = "";
+                int valor = fr.read();
+                while(valor != -1){
+                    cadena = cadena + (char) valor;
+                    valor = fr.read();
+                }
+                this.cargarArchivo.setText(cadena);
+            }catch (IOException e1){
+                e1.printStackTrace();
+            }
+        }else{
+            // Muestra un mensaje de error si no se ha escogido un archivo válido.
+            JOptionPane.showMessageDialog(null, "No se escogió un archivo válido");
+        }        
+    }//GEN-LAST:event_botonCargarActionPerformed
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        if (cargarArchivo != null) {
+
+            this.setVisible(false);
+            Bienvenida b = new Bienvenida();
+            Menu menu = new Menu(b);
+            menu.setVisible(true);
+        }
+      
+    }//GEN-LAST:event_botonGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +187,18 @@ public class Cargar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cargar().setVisible(true);
+                new Cargar(v1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAtras;
+    private javax.swing.JButton botonCargar;
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JTextArea cargarArchivo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField ruta;
     // End of variables declaration//GEN-END:variables
 }
