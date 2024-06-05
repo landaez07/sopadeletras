@@ -36,6 +36,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonCargar = new javax.swing.JButton();
         botonBuscar = new javax.swing.JButton();
+        botonBuscarEsp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,7 +48,7 @@ public class Menu extends javax.swing.JFrame {
                 botonCargarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
         botonBuscar.setText("Buscar");
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +56,15 @@ public class Menu extends javax.swing.JFrame {
                 botonBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+
+        botonBuscarEsp.setText("Buscar");
+        botonBuscarEsp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarEspActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBuscarEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,6 +95,14 @@ public class Menu extends javax.swing.JFrame {
 
         buscar.setVisible(true);
     }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonBuscarEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarEspActionPerformed
+       this.setVisible(false);
+       
+       BuscarPalabraEsp buscarEsp = new BuscarPalabraEsp(this);
+       
+       buscarEsp.setVisible(true);
+    }//GEN-LAST:event_botonBuscarEspActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +141,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonBuscarEsp;
     private javax.swing.JButton botonCargar;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

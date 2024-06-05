@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Chris
@@ -59,13 +61,17 @@ public class Bienvenida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSigActionPerformed
+        JOptionPane.showMessageDialog(null, "Debes de cargar una sopa de letras antes de comenzar el programa!");
+        
         this.setVisible(false);
         
         Bienvenida b = new Bienvenida();
         
         Menu menu = new Menu(b);
         
-        menu.setVisible(true);
+        Cargar cargar = new Cargar(menu);
+        
+        cargar.setVisible(true);
         
     }//GEN-LAST:event_botonSigActionPerformed
 

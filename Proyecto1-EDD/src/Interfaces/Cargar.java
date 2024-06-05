@@ -5,12 +5,14 @@
  */
 package Interfaces;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Chris
@@ -22,12 +24,13 @@ public class Cargar extends javax.swing.JFrame {
     /**
      * Creates new form Cargar
      */
-    public Cargar() {
+    public Cargar(Menu v1) {
         initComponents();
-//        this.v1 = v1;
-//        v1.setVisible(false);
+        this.v1 = v1;
+        v1.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        botonAtras.setEnabled(false);
     }
 
     /**
@@ -65,7 +68,7 @@ public class Cargar extends javax.swing.JFrame {
                 botonCargarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, 30));
 
         botonGuardar.setText("Guardar");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,8 +76,8 @@ public class Cargar extends javax.swing.JFrame {
                 botonGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, -1, -1));
-        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 330, 30));
+        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, 30));
+        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 350, 30));
 
         cargarArchivo.setColumns(20);
         cargarArchivo.setRows(5);
@@ -98,53 +101,52 @@ public class Cargar extends javax.swing.JFrame {
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.setVisible(false);
-        
+
         Bienvenida b = new Bienvenida();
-        
+
         Menu menu = new Menu(b);
-        
+
         menu.setVisible(true);
-     
+
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
-        //Creo el Objeto JFileChooser
+        // Creo el Objeto JFileChooser
         JFileChooser fc = new JFileChooser();
 
-        //Creo el filtro
+        // Creo el filtro
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt");
 
-        //Le indico el filtro
+        // Le indico el filtro
         fc.setFileFilter(filtro);
 
-        //Abrimos la ventana, guardamos la op seleccionada por el usuario
+        // Abrimos la ventana, guardamos la op seleccionada por el usuario
         int seleccion = fc.showOpenDialog(this);
 
-        //Si el usario presiona aceptar
-        if(seleccion == JFileChooser.APPROVE_OPTION){
-
-            //Selecciono el fichero
+        // Si el usuario presiona aceptar
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            // Selecciono el fichero
             File fichero = fc.getSelectedFile();
 
-            //Escribir la ruta del fichero
+            // Escribir la ruta del fichero
             this.ruta.setText(fichero.getAbsolutePath());
 
-            try(FileReader fr = new FileReader(fichero)){
-                String cadena = "";
-                int valor = fr.read();
-                while(valor != -1){
-                    System.out.println((char)valor);
-                    cadena = cadena + (char) valor;
-                    valor = fr.read();
+            try (FileReader fr = new FileReader(fichero); BufferedReader br = new BufferedReader(fr)) {
+                StringBuilder cadena = new StringBuilder();
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    System.out.println(linea);
+                    cadena.append(linea).append("\n");
                 }
-                this.cargarArchivo.setText(cadena);
-            }catch (IOException e1){
+                this.cargarArchivo.setText(cadena.toString());
+                botonAtras.setEnabled(true); // Habilitar botón Atras después de cargar el archivo
+            } catch (IOException e1) {
                 e1.printStackTrace();
             }
-        }else{
+        } else {
             // Muestra un mensaje de error si no se ha escogido un archivo válido.
             JOptionPane.showMessageDialog(null, "No se escogió un archivo válido");
-        }        
+        }
     }//GEN-LAST:event_botonCargarActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
@@ -155,7 +157,7 @@ public class Cargar extends javax.swing.JFrame {
             Menu menu = new Menu(b);
             menu.setVisible(true);
         }
-      
+
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     /**
@@ -188,7 +190,7 @@ public class Cargar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cargar().setVisible(true);
+                new Cargar(v1).setVisible(true);
             }
         });
     }
