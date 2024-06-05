@@ -11,29 +11,17 @@ package EDD;
 public class Arco {
     
     
-    private String Letra;
-    private Arco Puntero;
+    public Nodo nLetra;
+    public Nodo nLetra2;
+    public Arco siguiente;
 
-    public Arco(String Letra, Arco Puntero) {
-        this.Letra = Letra;
-        this.Puntero = Puntero;
+    public Arco(Nodo Letra, Nodo Puntero) {
+        this.nLetra = Letra;
+        this.nLetra2 = Puntero;
+        this.siguiente = null;
     }
 
-    public String getLetra() {
-        return Letra;
-    }
-
-    public void setLetra(String Letra) {
-        this.Letra = Letra;
-    }
-
-    public Arco getPuntero() {
-        return Puntero;
-    }
-
-    public void setPuntero(Arco Puntero) {
-        this.Puntero = Puntero;
-    }
+ 
     
     
 }

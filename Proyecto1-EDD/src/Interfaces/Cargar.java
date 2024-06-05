@@ -22,10 +22,10 @@ public class Cargar extends javax.swing.JFrame {
     /**
      * Creates new form Cargar
      */
-    public Cargar(Menu v1) {
+    public Cargar() {
         initComponents();
-        this.v1 = v1;
-        v1.setVisible(false);
+//        this.v1 = v1;
+//        v1.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
@@ -133,6 +133,7 @@ public class Cargar extends javax.swing.JFrame {
                 String cadena = "";
                 int valor = fr.read();
                 while(valor != -1){
+                    System.out.println((char)valor);
                     cadena = cadena + (char) valor;
                     valor = fr.read();
                 }
@@ -187,7 +188,7 @@ public class Cargar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cargar(v1).setVisible(true);
+                new Cargar().setVisible(true);
             }
         });
     }

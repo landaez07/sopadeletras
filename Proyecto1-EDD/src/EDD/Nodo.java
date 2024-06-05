@@ -16,10 +16,10 @@ public class Nodo {
     private Nodo apuntador;
     private ListaInterna listainterna;
 
-    public Nodo(String Letras, Nodo apuntador, ListaInterna listainterna) {
+    public Nodo(String Letras) {
         this.Letras = Letras;
         this.apuntador = null;
-        this.listainterna = listainterna;
+        this.listainterna = null;
     
     }
 
