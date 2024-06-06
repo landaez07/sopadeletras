@@ -36,6 +36,14 @@ public class Menu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonCargar = new javax.swing.JButton();
         botonBuscar = new javax.swing.JButton();
+        botonBuscarEsp = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        Titulo = new javax.swing.JLabel();
+        Titulo1 = new javax.swing.JLabel();
+        Titulo2 = new javax.swing.JLabel();
+        Titulo3 = new javax.swing.JLabel();
+        Titulo4 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,7 +55,7 @@ public class Menu extends javax.swing.JFrame {
                 botonCargarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 90, 40));
 
         botonBuscar.setText("Buscar");
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -55,17 +63,60 @@ public class Menu extends javax.swing.JFrame {
                 botonBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 100, 40));
+
+        botonBuscarEsp.setText("Buscar");
+        botonBuscarEsp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarEspActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBuscarEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 100, 40));
+
+        jLabel4.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel4.setText("Selecciona una opción:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 480, 30));
+
+        Titulo.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(51, 51, 255));
+        Titulo.setText("Buscar palabra en");
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
+
+        Titulo1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        Titulo1.setForeground(new java.awt.Color(51, 51, 255));
+        Titulo1.setText("Menú principal");
+        jPanel1.add(Titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
+
+        Titulo2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        Titulo2.setForeground(new java.awt.Color(51, 51, 255));
+        Titulo2.setText("Cargar diccionario:");
+        jPanel1.add(Titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        Titulo3.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        Titulo3.setForeground(new java.awt.Color(51, 51, 255));
+        Titulo3.setText("Buscar palabras:");
+        jPanel1.add(Titulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, -1, -1));
+
+        Titulo4.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        Titulo4.setForeground(new java.awt.Color(51, 51, 255));
+        Titulo4.setText("específico:");
+        jPanel1.add(Titulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
+
+        background.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
+        background.setText(".");
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -86,6 +137,14 @@ public class Menu extends javax.swing.JFrame {
 
         buscar.setVisible(true);
     }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonBuscarEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarEspActionPerformed
+       this.setVisible(false);
+       
+       BuscarPalabraEsp buscarEsp = new BuscarPalabraEsp(this);
+       
+       buscarEsp.setVisible(true);
+    }//GEN-LAST:event_botonBuscarEspActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,8 +182,16 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel Titulo1;
+    private javax.swing.JLabel Titulo2;
+    private javax.swing.JLabel Titulo3;
+    private javax.swing.JLabel Titulo4;
+    private javax.swing.JLabel background;
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonBuscarEsp;
     private javax.swing.JButton botonCargar;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

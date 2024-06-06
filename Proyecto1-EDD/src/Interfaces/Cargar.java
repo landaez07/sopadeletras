@@ -5,12 +5,14 @@
  */
 package Interfaces;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Chris
@@ -22,12 +24,13 @@ public class Cargar extends javax.swing.JFrame {
     /**
      * Creates new form Cargar
      */
-    public Cargar() {
+    public Cargar(Menu v1) {
         initComponents();
-//        this.v1 = v1;
-//        v1.setVisible(false);
+        this.v1 = v1;
+        v1.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        botonAtras.setEnabled(false);
     }
 
     /**
@@ -46,6 +49,8 @@ public class Cargar extends javax.swing.JFrame {
         ruta = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         cargarArchivo = new javax.swing.JTextArea();
+        Titulo = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,7 +62,7 @@ public class Cargar extends javax.swing.JFrame {
                 botonAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 383, -1, 30));
 
         botonCargar.setText("Cargar");
         botonCargar.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +70,7 @@ public class Cargar extends javax.swing.JFrame {
                 botonCargarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, -1, 30));
 
         botonGuardar.setText("Guardar");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,24 +78,34 @@ public class Cargar extends javax.swing.JFrame {
                 botonGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, -1, -1));
-        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 330, 30));
+        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, 30));
+        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 350, 30));
 
         cargarArchivo.setColumns(20);
         cargarArchivo.setRows(5);
         jScrollPane1.setViewportView(cargarArchivo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 350, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 350, 200));
+
+        Titulo.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(51, 51, 255));
+        Titulo.setText("Cargar diccionario");
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        background.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
+        background.setText(".");
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -98,53 +113,52 @@ public class Cargar extends javax.swing.JFrame {
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.setVisible(false);
-        
+
         Bienvenida b = new Bienvenida();
-        
+
         Menu menu = new Menu(b);
-        
+
         menu.setVisible(true);
-     
+
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
-        //Creo el Objeto JFileChooser
+        // Creo el Objeto JFileChooser
         JFileChooser fc = new JFileChooser();
 
-        //Creo el filtro
+        // Creo el filtro
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt");
 
-        //Le indico el filtro
+        // Le indico el filtro
         fc.setFileFilter(filtro);
 
-        //Abrimos la ventana, guardamos la op seleccionada por el usuario
+        // Abrimos la ventana, guardamos la op seleccionada por el usuario
         int seleccion = fc.showOpenDialog(this);
 
-        //Si el usario presiona aceptar
-        if(seleccion == JFileChooser.APPROVE_OPTION){
-
-            //Selecciono el fichero
+        // Si el usuario presiona aceptar
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            // Selecciono el fichero
             File fichero = fc.getSelectedFile();
 
-            //Escribir la ruta del fichero
+            // Escribir la ruta del fichero
             this.ruta.setText(fichero.getAbsolutePath());
 
-            try(FileReader fr = new FileReader(fichero)){
-                String cadena = "";
-                int valor = fr.read();
-                while(valor != -1){
-                    System.out.println((char)valor);
-                    cadena = cadena + (char) valor;
-                    valor = fr.read();
+            try (FileReader fr = new FileReader(fichero); BufferedReader br = new BufferedReader(fr)) {
+                StringBuilder cadena = new StringBuilder();
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    System.out.println(linea);
+                    cadena.append(linea).append("\n");
                 }
-                this.cargarArchivo.setText(cadena);
-            }catch (IOException e1){
+                this.cargarArchivo.setText(cadena.toString());
+                botonAtras.setEnabled(true); // Habilitar botón Atras después de cargar el archivo
+            } catch (IOException e1) {
                 e1.printStackTrace();
             }
-        }else{
+        } else {
             // Muestra un mensaje de error si no se ha escogido un archivo válido.
             JOptionPane.showMessageDialog(null, "No se escogió un archivo válido");
-        }        
+        }
     }//GEN-LAST:event_botonCargarActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
@@ -155,7 +169,7 @@ public class Cargar extends javax.swing.JFrame {
             Menu menu = new Menu(b);
             menu.setVisible(true);
         }
-      
+
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     /**
@@ -188,12 +202,14 @@ public class Cargar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cargar().setVisible(true);
+                new Cargar(v1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel background;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonCargar;
     private javax.swing.JButton botonGuardar;

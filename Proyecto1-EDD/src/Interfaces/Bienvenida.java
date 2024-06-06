@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Chris
@@ -31,6 +33,8 @@ public class Bienvenida extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         botonSig = new javax.swing.JButton();
+        Titulo = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,30 +46,44 @@ public class Bienvenida extends javax.swing.JFrame {
                 botonSigActionPerformed(evt);
             }
         });
-        jPanel1.add(botonSig, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
+        jPanel1.add(botonSig, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, -1, -1));
+
+        Titulo.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(51, 51, 255));
+        Titulo.setText("Bienvenido");
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
+
+        background.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
+        background.setText(".");
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSigActionPerformed
+        JOptionPane.showMessageDialog(null, "Debes de cargar una sopa de letras antes de comenzar el programa!");
+        
         this.setVisible(false);
         
         Bienvenida b = new Bienvenida();
         
         Menu menu = new Menu(b);
         
-        menu.setVisible(true);
+        Cargar cargar = new Cargar(menu);
+        
+        cargar.setVisible(true);
         
     }//GEN-LAST:event_botonSigActionPerformed
 
@@ -105,6 +123,8 @@ public class Bienvenida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel background;
     private javax.swing.JButton botonSig;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
