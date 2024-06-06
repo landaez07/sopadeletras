@@ -75,5 +75,38 @@ public class Grafo {
         
     }
     
+    
+    
+    
+    
+    
+    
+    //procedimiento recursivo 
+    public void recorrerProfundidad ( int v, boolean [ ] visitados, String palabra, int contador) { 
+    //se marca el vértice v como visitado 
+        visitados [v] = true; 
+        //el tratamiento del vértice consiste únicamente en imprimirlo en pantalla 
+        System.out.println (v); 
+        //se examinan los vértices adyacentes a v para continuar el recorrido 
+        if (contador == palabra.length()){
+            for (int i = 0; i < this.max_nodos; i++) { 
+                if ((v != i) && (!visitados [i]) && (existeArista (v, i)) ) {
+                    recorrerProfundidad ( i, visitados); 
+                }    
+            } 
+        }
+    } 
+//procedimiento no recursivo 
+    public void profundidad () { 
+        boolean visitados [ ] = new boolean [this.max_nodos]; 
+        for (int i = 0; i < this.max_nodos; i++)  //inicializar vector con campos false 
+            visitados [i] = false; 
+        for (int i = 0; i <this.max_nodos; i++) {  //Relanza el recorrido en cada  
+            if (!visitados [i]){    //vértice visitado 
+                recorrerProfundidad ( i, visitados);
+            }    
+        } 
+    } 
+
            
 }
