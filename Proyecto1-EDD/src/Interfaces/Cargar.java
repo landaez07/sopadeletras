@@ -49,6 +49,8 @@ public class Cargar extends javax.swing.JFrame {
         ruta = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         cargarArchivo = new javax.swing.JTextArea();
+        Titulo = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,7 +62,7 @@ public class Cargar extends javax.swing.JFrame {
                 botonAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 383, -1, 30));
 
         botonCargar.setText("Cargar");
         botonCargar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +70,7 @@ public class Cargar extends javax.swing.JFrame {
                 botonCargarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, 30));
+        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, -1, 30));
 
         botonGuardar.setText("Guardar");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,24 +78,34 @@ public class Cargar extends javax.swing.JFrame {
                 botonGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, 30));
-        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 350, 30));
+        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, 30));
+        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 350, 30));
 
         cargarArchivo.setColumns(20);
         cargarArchivo.setRows(5);
         jScrollPane1.setViewportView(cargarArchivo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 350, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 350, 200));
+
+        Titulo.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(51, 51, 255));
+        Titulo.setText("Cargar diccionario");
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        background.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
+        background.setText(".");
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -196,6 +208,8 @@ public class Cargar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel background;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonCargar;
     private javax.swing.JButton botonGuardar;
