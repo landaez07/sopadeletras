@@ -21,7 +21,7 @@ public class Proyecto1EDD {
         // TODO code application logic here
         Grafo g = new Grafo(16, "CHAOXATMPRRAAORO");
         g.crearGrafo();
-        System.out.println(g.profundidad("CHAL"));
+        System.out.println(g.amplitud("XRRAMO"));
 //        g.mostrar();
         Cargar c = new Cargar();
         

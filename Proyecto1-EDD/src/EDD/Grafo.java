@@ -124,33 +124,41 @@ public class Grafo {
         return b;
     }
 
-    public static void amplitud(Grafo g) {
+    public boolean amplitud(String palabra) {
         Cola cola = new Cola();
-        boolean visitados[] = new boolean[g.obtenerNumVertices()];
-        int v; //vértice actual
+        boolean visitados[] = new boolean[this.max_nodos];
+        Nodo v; //vértice actual
 //Se inicializa el vector visitados [] a false
-        for (int i = 0; i < g.obtenerNumVertices(); i++) {
+        for (int i = 0; i < this.max_nodos; i++) {
             visitados[i] = false;
         }
 //El recorrido en amplitud se inicia en cada vértice no visitado
-        for (int i = 0; i < g.obtenerNumVertices(); i++) {
+        for (int i = 0; i < this.max_nodos; i++) {
 //se pone en la cola el vértide de partida y se marca como visitado
-            if (!visitados[i]) {
-                cola.encolar(i);
+            if (!visitados[i] && this.vertices[i].getLetras().equals(String.valueOf(palabra.charAt(0)))) {
+                cola.encolar(this.vertices[i]);
                 visitados[i] = true;
-                while (!cola.estaVacia()) {
+                int pos = 1;
+                while (!cola.isEmpty()) {
+                    String p = palabra.substring(pos);
                     v = cola.desencolar(); //desencolar y tratar el vértice
-                    System.out.println(v);
+                    if(p.length() == 0){
+                        return true;
+                    }
+//                    System.out.println(v);
 //y encolo los nodos adyacentes a v.
-                    for (int j = 0; j < g.obtenerNumVertices(); j++) {
-                        if ((v != j) && (g.existeArista(v, j) && (!visitados[j]))  {
-                            cola.encolar(j);
+                    for (int j = 0; j < this.max_nodos; j++) {
+                        if (v.getListainterna().Buscar(this.vertices[j]) && (!visitados[j]) && this.vertices[j].getLetras().equals(String.valueOf(palabra.charAt(pos))))  {
+                            cola.encolar(this.vertices[j]);
                             visitados[j] = true;
                         }
                     }
+                    pos++;
                 }
+                return false;
             }
         }
+        return false;
     }
 
 }
