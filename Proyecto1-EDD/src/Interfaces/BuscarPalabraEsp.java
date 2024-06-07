@@ -34,58 +34,45 @@ public class BuscarPalabraEsp extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         botonAtras = new javax.swing.JButton();
-        icon2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        textoPalabra = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonAtras.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         botonAtras.setText("Atras");
-        botonAtras.setActionCommand("Atrás");
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 90, 40));
-
-        icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LupaEspecifica.png"))); // NOI18N
-        jPanel1.add(icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 60, 60));
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 80, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 255));
         jLabel2.setText("Buscar palabra en específico");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 390, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 390, -1));
 
         jLabel4.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 204));
         jLabel4.setText("Escribe la palabra que quieres buscar:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 320, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 500, 30));
 
         jLabel5.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 51, 204));
         jLabel5.setText("Para buscar una palabra en especifico en la sopa de letras, se utilizara");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 590, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 590, 30));
 
         jLabel6.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 204));
         jLabel6.setText("el método de búsqueda Breadth First Search (BFS).");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 590, 30));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton1.setText("Buscar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 100, 40));
-
-        textoPalabra.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jPanel1.add(textoPalabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 260, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 590, 30));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 260, 30));
 
         background.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
@@ -154,13 +141,11 @@ public class BuscarPalabraEsp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
     private javax.swing.JButton botonAtras;
-    private javax.swing.JLabel icon2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField textoPalabra;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

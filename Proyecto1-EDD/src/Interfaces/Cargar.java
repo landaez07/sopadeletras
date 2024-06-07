@@ -50,61 +50,47 @@ public class Cargar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         cargarArchivo = new javax.swing.JTextArea();
         Titulo = new javax.swing.JLabel();
-        Añadir = new javax.swing.JLabel();
-        icon = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonAtras.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        botonAtras.setText("Atrás");
+        botonAtras.setText("Atras");
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 100, 40));
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 383, -1, 30));
 
-        botonCargar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         botonCargar.setText("Cargar");
         botonCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCargarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 100, 40));
+        jPanel1.add(botonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, -1, 30));
 
-        botonGuardar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         botonGuardar.setText("Guardar");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, 100, 40));
-
-        ruta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 440, 30));
+        jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, 30));
+        jPanel1.add(ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 350, 30));
 
         cargarArchivo.setColumns(20);
-        cargarArchivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cargarArchivo.setRows(5);
         jScrollPane1.setViewportView(cargarArchivo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 440, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 350, 200));
 
-        Titulo.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
+        Titulo.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         Titulo.setForeground(new java.awt.Color(51, 51, 255));
         Titulo.setText("Cargar diccionario");
-        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
-
-        Añadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Añadir.png"))); // NOI18N
-        jPanel1.add(Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 30, 30));
-
-        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Archivo.png"))); // NOI18N
-        jPanel1.add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 60, 70));
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
         background.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
@@ -222,14 +208,12 @@ public class Cargar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Añadir;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel background;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonCargar;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JTextArea cargarArchivo;
-    private javax.swing.JLabel icon;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField ruta;
