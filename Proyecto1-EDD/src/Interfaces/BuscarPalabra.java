@@ -5,18 +5,20 @@
  */
 package Interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Chris
  */
 public class BuscarPalabra extends javax.swing.JFrame {
 
-    public static Menu v1;
+    public static Cargar v1;
 
     /**
      * Creates new form BuscarPalabra
      */
-    public BuscarPalabra(Menu v1) {
+    public BuscarPalabra(Cargar v1) {
         initComponents();
         this.v1 = v1;
         v1.setVisible(false);
@@ -41,9 +43,10 @@ public class BuscarPalabra extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        Buscar1 = new javax.swing.JButton();
         Buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        palabras = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         background = new javax.swing.JLabel();
@@ -89,13 +92,27 @@ public class BuscarPalabra extends javax.swing.JFrame {
         jLabel6.setText("Palabras encontradas:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 200, 30));
 
-        Buscar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        Buscar.setText("Buscar");
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 90, 40));
+        Buscar1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        Buscar1.setText("Buscar por DFS");
+        Buscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Buscar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 160, 40));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Buscar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        Buscar.setText("Buscar por BFS");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 170, 40));
+
+        palabras.setColumns(20);
+        palabras.setRows(5);
+        jScrollPane1.setViewportView(palabras);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 300, 140));
 
@@ -127,13 +144,50 @@ public class BuscarPalabra extends javax.swing.JFrame {
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.setVisible(false);
 
-        Bienvenida b = new Bienvenida();
-
-        Menu menu = new Menu(b);
+        Menu menu = new Menu(v1);
 
         menu.setVisible(true);
 
     }//GEN-LAST:event_botonAtrasActionPerformed
+
+    private void Buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar1ActionPerformed
+        // TODO add your handling code here:
+        long startTime = System.currentTimeMillis();
+
+// Código a medir
+        this.palabras.setText("");
+        for (String word : v1.diccionario) {
+            System.out.println(word);
+            if (v1.grafo.profundidad(word)) {
+                System.out.println("igual");
+                this.palabras.setText(palabras.getText() + "," + word);
+            }
+        }
+
+        long endTime = System.currentTimeMillis();
+        long tiempoDeEjecucion = endTime - startTime;
+
+        JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
+    }//GEN-LAST:event_Buscar1ActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        // TODO add your handling code here:
+        long startTime = System.currentTimeMillis();
+
+        this.palabras.setText("");
+
+        for (String word : v1.diccionario) {
+            if (v1.grafo.amplitud(word)) {
+                this.palabras.setText(palabras.getText() + "," + word);
+            }
+        }
+        long endTime = System.currentTimeMillis();
+        long tiempoDeEjecucion = endTime - startTime;
+
+        JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
+
+
+    }//GEN-LAST:event_BuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +226,7 @@ public class BuscarPalabra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
+    private javax.swing.JButton Buscar1;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel background;
     private javax.swing.JButton botonAtras;
@@ -183,7 +238,7 @@ public class BuscarPalabra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea palabras;
     // End of variables declaration//GEN-END:variables
 }

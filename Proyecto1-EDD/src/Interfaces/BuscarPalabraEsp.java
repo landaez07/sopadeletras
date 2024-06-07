@@ -1,5 +1,7 @@
 package Interfaces;
 
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -10,12 +12,12 @@ package Interfaces;
  */
 public class BuscarPalabraEsp extends javax.swing.JFrame {
 
-    public static Menu v1;
+    public static Cargar v1;
 
     /**
      * Creates new form BuscarPalabraEsp
      */
-    public BuscarPalabraEsp(Menu v1) {
+    public BuscarPalabraEsp(Cargar v1) {
         initComponents();
         this.v1 = v1;
         v1.setVisible(false);
@@ -82,6 +84,11 @@ public class BuscarPalabraEsp extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 100, 40));
 
         textoPalabra.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -111,10 +118,26 @@ public class BuscarPalabraEsp extends javax.swing.JFrame {
 
         Bienvenida b = new Bienvenida();
 
-        Menu menu = new Menu(b);
+        Menu menu = new Menu(v1);
 
         menu.setVisible(true);
     }//GEN-LAST:event_botonAtrasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String palabra = this.textoPalabra.getText().toUpperCase();
+        if (palabra.length() > 2) {
+            if (v1.grafo.amplitud(palabra)) {
+                JOptionPane.showMessageDialog(rootPane, "PALABRA ENCONNTRADA");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "PALABRA NO ENCONNTRADA");
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "LA PALABRA DEBE TENER AL MENOS 3 LETRAS");
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

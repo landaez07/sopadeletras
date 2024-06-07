@@ -138,10 +138,9 @@ public class Bienvenida extends javax.swing.JFrame {
         
         Bienvenida b = new Bienvenida();
         
-        Menu menu = new Menu(b);
         
-        Cargar cargar = new Cargar(menu);
-        
+        Cargar cargar = new Cargar();
+
         cargar.setVisible(true);
         
     }//GEN-LAST:event_botonSigActionPerformed

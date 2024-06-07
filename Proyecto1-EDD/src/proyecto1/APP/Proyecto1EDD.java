@@ -5,6 +5,8 @@
  */
 package proyecto1.APP;
 
+import EDD.Grafo;
+import EDD.Nodo;
 import Interfaces.Bienvenida;
 
 /**
@@ -17,9 +19,13 @@ public class Proyecto1EDD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+//        Grafo g = new Grafo(16, "CHAOXATMPRRAAORO");
+//        System.out.println(g.amplitud2("RATA"));
         Bienvenida b = new Bienvenida();
-        
+//        Nodo[] a = g.amplitud2("RATA");
+//        for (int i = 0; i < 16; i++) {
+//            System.out.println(a[i].getLetras());
+//        }
         b.setVisible(true);
     }
     

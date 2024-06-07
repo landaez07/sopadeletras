@@ -5,20 +5,25 @@
  */
 package Interfaces;
 
+import EDD.Grafo;
+
 /**
  *
  * @author Chris
  */
 public class Menu extends javax.swing.JFrame {
-
-    public static Bienvenida v1;
+    public Grafo grafo;
+    public String[] diccionario;
+    public static Cargar v1;
 
     /**
      * Creates new form Menu
      */
-    public Menu(Bienvenida v1) {
+    public Menu(Cargar v1) {
         initComponents();
         this.v1 = v1;
+        this.grafo = v1.grafo;
+        this.diccionario = v1.diccionario;
         v1.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -150,7 +155,7 @@ public class Menu extends javax.swing.JFrame {
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
         this.setVisible(false);
 
-        Cargar cargar = new Cargar(this);
+        Cargar cargar = new Cargar();
 
         cargar.setVisible(true);
     }//GEN-LAST:event_botonCargarActionPerformed
@@ -158,7 +163,7 @@ public class Menu extends javax.swing.JFrame {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         this.setVisible(false);
 
-        BuscarPalabra buscar = new BuscarPalabra(this);
+        BuscarPalabra buscar = new BuscarPalabra(v1);
 
         buscar.setVisible(true);
     }//GEN-LAST:event_botonBuscarActionPerformed
@@ -166,7 +171,7 @@ public class Menu extends javax.swing.JFrame {
     private void botonBuscarEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarEspActionPerformed
        this.setVisible(false);
        
-       BuscarPalabraEsp buscarEsp = new BuscarPalabraEsp(this);
+       BuscarPalabraEsp buscarEsp = new BuscarPalabraEsp(v1);
        
        buscarEsp.setVisible(true);
     }//GEN-LAST:event_botonBuscarEspActionPerformed

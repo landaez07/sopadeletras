@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import EDD.Grafo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,15 +20,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Cargar extends javax.swing.JFrame {
 
+    public String[] diccionario;
+    public Grafo grafo;
     public static Menu v1;
 
     /**
      * Creates new form Cargar
      */
-    public Cargar(Menu v1) {
+    public Cargar() {
         initComponents();
-        this.v1 = v1;
-        v1.setVisible(false);
+//        v1.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         botonAtras.setEnabled(false);
@@ -128,9 +130,8 @@ public class Cargar extends javax.swing.JFrame {
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.setVisible(false);
 
-        Bienvenida b = new Bienvenida();
 
-        Menu menu = new Menu(b);
+        Menu menu = new Menu(this);
 
         menu.setVisible(true);
 
@@ -153,17 +154,30 @@ public class Cargar extends javax.swing.JFrame {
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             // Selecciono el fichero
             File fichero = fc.getSelectedFile();
-
+            String datos = "";
             // Escribir la ruta del fichero
             this.ruta.setText(fichero.getAbsolutePath());
 
             try (FileReader fr = new FileReader(fichero); BufferedReader br = new BufferedReader(fr)) {
                 StringBuilder cadena = new StringBuilder();
                 String linea;
+                int modo = 0;
                 while ((linea = br.readLine()) != null) {
+                    if (linea.equals("dic") || linea.equals("/dic")) {
+
+                    } else if (linea.equals("tab") || linea.equals("/tab")) {
+                        modo = 1;
+                    } else if (modo == 0) {
+                        datos += linea + ",";
+                    } else {
+                        linea = linea.replace(",", "");
+                        this.grafo = new Grafo(linea.length(), linea);
+                    }
                     System.out.println(linea);
                     cadena.append(linea).append("\n");
                 }
+                this.diccionario = datos.split(",");
+
                 this.cargarArchivo.setText(cadena.toString());
                 botonAtras.setEnabled(true); // Habilitar botón Atras después de cargar el archivo
             } catch (IOException e1) {
@@ -180,7 +194,7 @@ public class Cargar extends javax.swing.JFrame {
 
             this.setVisible(false);
             Bienvenida b = new Bienvenida();
-            Menu menu = new Menu(b);
+            Menu menu = new Menu(this);
             menu.setVisible(true);
         }
 
@@ -216,7 +230,7 @@ public class Cargar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cargar(v1).setVisible(true);
+                new Cargar().setVisible(true);
             }
         });
     }

@@ -5,6 +5,12 @@
  */
 package EDD;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.SingleGraph;
+
 /**
  *
  * @author Chris
@@ -22,6 +28,7 @@ public class Grafo {
         for (int i = 0; i < max_nodos; i++) {
             this.vertices[i] = new Nodo(String.valueOf(letras.charAt(i)));
         }
+        this.crearGrafo();
     }
 
     public void crearArista(int i, int j) {
@@ -118,7 +125,12 @@ public class Grafo {
         for (int i = 0; i < this.max_nodos; i++) {  //Relanza el recorrido en cada  
             if (!visitados[i] && this.vertices[i].getLetras().equals(String.valueOf(palabra.charAt(0)))) {    //vértice visitado 
                 visitados[i] = true;
+
+//                System.out.println("ENTRA");
                 b = recorrerProfundidad(i, visitados, palabra, 1);
+                if (b) {
+                    return b;
+                }
             }
         }
         return b;
@@ -142,23 +154,107 @@ public class Grafo {
                 while (!cola.isEmpty()) {
                     String p = palabra.substring(pos);
                     v = cola.desencolar(); //desencolar y tratar el vértice
-                    if(p.length() == 0){
+                    if (p.length() == 0) {
                         return true;
                     }
-//                    System.out.println(v);
+//                    System.out.println(v.getLetras());
 //y encolo los nodos adyacentes a v.
                     for (int j = 0; j < this.max_nodos; j++) {
-                        if (v.getListainterna().Buscar(this.vertices[j]) && (!visitados[j]) && this.vertices[j].getLetras().equals(String.valueOf(palabra.charAt(pos))))  {
+                        if (v.getListainterna().Buscar(this.vertices[j]) && (!visitados[j]) && this.vertices[j].getLetras().equals(String.valueOf(palabra.charAt(pos)))) {
                             cola.encolar(this.vertices[j]);
+//                            System.out.println(this.vertices[j].getLetras());
                             visitados[j] = true;
                         }
                     }
                     pos++;
                 }
-                return false;
+            }
+        }
+        return false;
+
+    }
+
+    public boolean amplitud2(String palabra) {
+        Cola cola = new Cola();
+        boolean visitados[] = new boolean[this.max_nodos];
+        Nodo v; //vértice actual
+        Nodo[] nodosVisitados = new Nodo[this.max_nodos];
+        int indice = 0;
+
+        //Se inicializa el vector visitados [] a false
+        for (int i = 0; i < this.max_nodos; i++) {
+            visitados[i] = false;
+        }
+
+        //El recorrido en amplitud se inicia en cada vértice no visitado
+        for (int i = 0; i < this.max_nodos; i++) {
+            //se pone en la cola el vértide de partida y se marca como visitado
+            if (!visitados[i] && this.vertices[i].getLetras().equals(String.valueOf(palabra.charAt(0)))) {
+                cola.encolar(this.vertices[i]);
+                visitados[i] = true;
+                nodosVisitados[indice++] = this.vertices[i];
+                int pos = 1;
+                while (!cola.isEmpty()) {
+                    String p = palabra.substring(pos);
+                    v = cola.desencolar(); //desencolar y tratar el vértice
+                    if (p.length() == 0) {
+                        visualizarArbol(nodosVisitados);
+                        return true;
+                    }
+                    //y encolo los nodos adyacentes a v.
+                    for (int j = 0; j < this.max_nodos; j++) {
+                        if (v.getListainterna().Buscar(this.vertices[j]) && (!visitados[j]) && this.vertices[j].getLetras().equals(String.valueOf(palabra.charAt(pos)))) {
+                            cola.encolar(this.vertices[j]);
+                            visitados[j] = true;
+                            nodosVisitados[indice++] = this.vertices[j];
+                        }
+                    }
+                    pos++;
+                }
             }
         }
         return false;
     }
 
+public void visualizarArbol(Nodo[] nodosVisitados) {
+    // Crear un grafo vacío
+    Graph graph = new SingleGraph("Árbol de recorrido");
+
+    // Crear un mapa para asignar identificadores únicos a los nodos
+    Map<String, Node> nodeMap = new HashMap<>();
+
+    // Agregar nodos al grafo
+    for (int i = 0; i < nodosVisitados.length; i++) {
+        try {
+            String letra = nodosVisitados[i].getLetras();
+            String nodeId = letra + i; // Crear una clave única para cada nodo
+            Node node = graph.addNode(nodeId);
+            nodeMap.put(nodeId, node);
+            node.setAttribute("ui.label", letra); // Agregar etiqueta al nodo
+            node.setAttribute("ui.style", "fill-color: rgb(255, 255, 255);"); // Agregar estilo al nodo
+        } catch (Exception e) {
+            // Manejar la excepción
+        }
+    }
+
+    // Agregar aristas al grafo
+    for (int i = 0; i < nodosVisitados.length - 1; i++) {
+        try {
+            String letra1 = nodosVisitados[i].getLetras();
+            String letra2 = nodosVisitados[i + 1].getLetras();
+            String nodeId1 = letra1 + i;
+            String nodeId2 = letra2 + (i + 1);
+            Node node1 = nodeMap.get(nodeId1);
+            Node node2 = nodeMap.get(nodeId2);
+            graph.addEdge(nodeId1 + "-" + nodeId2, node1, node2);
+        } catch (Exception e) {
+            // Manejar la excepción
+        }
+    }
+
+    System.setProperty("org.graphstream.ui", "swing");
+
+    // Visualizar el grafo
+    graph.display();
+}
 }
