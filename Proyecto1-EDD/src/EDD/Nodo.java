@@ -19,7 +19,7 @@ public class Nodo {
     public Nodo(String Letras) {
         this.Letras = Letras;
         this.apuntador = null;
-        this.listainterna = null;
+        this.listainterna = new ListaInterna();
     
     }
 
