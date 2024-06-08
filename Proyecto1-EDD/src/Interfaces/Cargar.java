@@ -15,17 +15,32 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
+ * La clase {@code Cargar} representa la ventana de carga de archivos. Permite
+ * al usuario cargar un archivo de texto que contiene los datos de una sopa de
+ * letras y un diccionario de palabras.
  *
- * @author Chris
+ * @autor Chris
  */
 public class Cargar extends javax.swing.JFrame {
 
+    /**
+     * El diccionario de palabras cargado desde el archivo.
+     */
     public String[] diccionario;
+
+    /**
+     * El grafo que representa la sopa de letras cargada desde el archivo.
+     */
     public Grafo grafo;
+
+    /**
+     * La instancia de la ventana principal del menú.
+     */
     public static Menu v1;
 
     /**
-     * Creates new form Cargar
+     * Crea una nueva instancia de la clase {@code Cargar}. Inicializa los
+     * componentes y configura la ventana.
      */
     public Cargar() {
         initComponents();
@@ -127,16 +142,27 @@ public class Cargar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción realizada al presionar el botón "Atras". Oculta la ventana actual
+     * y muestra la ventana principal del menú.
+     *
+     * @param evt el evento de acción
+     */
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.setVisible(false);
-
 
         Menu menu = new Menu(this);
 
         menu.setVisible(true);
 
     }//GEN-LAST:event_botonAtrasActionPerformed
-
+    /**
+     * Acción realizada al presionar el botón "Cargar". Abre un diálogo de
+     * selección de archivo, carga el archivo seleccionado y muestra su
+     * contenido en el área de texto.
+     *
+     * @param evt el evento de acción
+     */
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
         // Creo el Objeto JFileChooser
         JFileChooser fc = new JFileChooser();
@@ -189,6 +215,12 @@ public class Cargar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonCargarActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón "Guardar". Oculta la ventana
+     * actual y muestra la ventana principal del menú.
+     *
+     * @param evt el evento de acción
+     */
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         if (cargarArchivo != null) {
 

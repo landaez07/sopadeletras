@@ -8,16 +8,34 @@ package Interfaces;
 import EDD.Grafo;
 
 /**
+ * La clase {@code Menu} representa la ventana principal del menú de la
+ * aplicación. Permite acceder a diferentes funcionalidades como cargar una sopa
+ * de letras, buscar palabras en la sopa de letras y buscar palabras en español.
  *
- * @author Chris
+ * @autor Chris
  */
 public class Menu extends javax.swing.JFrame {
+
+    /**
+     * El grafo que representa la sopa de letras.
+     */
     public Grafo grafo;
+
+    /**
+     * El diccionario de palabras.
+     */
     public String[] diccionario;
+
+    /**
+     * La instancia de la ventana de carga.
+     */
     public static Cargar v1;
 
     /**
-     * Creates new form Menu
+     * Crea una nueva instancia de la clase {@code Menu}. Inicializa los
+     * componentes y configura la ventana.
+     *
+     * @param v1 la instancia de la ventana de carga
      */
     public Menu(Cargar v1) {
         initComponents();
@@ -152,6 +170,12 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción realizada al presionar el botón "Cargar". Oculta la ventana actual
+     * y muestra la ventana de carga.
+     *
+     * @param evt el evento de acción
+     */
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
         this.setVisible(false);
 
@@ -160,6 +184,12 @@ public class Menu extends javax.swing.JFrame {
         cargar.setVisible(true);
     }//GEN-LAST:event_botonCargarActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón "Buscar Palabra". Oculta la
+     * ventana actual y muestra la ventana de búsqueda de palabras.
+     *
+     * @param evt el evento de acción
+     */
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         this.setVisible(false);
 
@@ -167,13 +197,19 @@ public class Menu extends javax.swing.JFrame {
 
         buscar.setVisible(true);
     }//GEN-LAST:event_botonBuscarActionPerformed
-
+    /**
+     * Acción realizada al presionar el botón "Buscar Palabra en específico".
+     * Oculta la ventana actual y muestra la ventana de búsqueda de palabras en
+     * específico.
+     *
+     * @param evt el evento de acción
+     */
     private void botonBuscarEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarEspActionPerformed
-       this.setVisible(false);
-       
-       BuscarPalabraEsp buscarEsp = new BuscarPalabraEsp(v1);
-       
-       buscarEsp.setVisible(true);
+        this.setVisible(false);
+
+        BuscarPalabraEsp buscarEsp = new BuscarPalabraEsp(v1);
+
+        buscarEsp.setVisible(true);
     }//GEN-LAST:event_botonBuscarEspActionPerformed
 
     /**

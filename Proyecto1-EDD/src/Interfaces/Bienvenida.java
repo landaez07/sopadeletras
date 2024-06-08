@@ -8,13 +8,17 @@ package Interfaces;
 import javax.swing.JOptionPane;
 
 /**
+ * La clase {@code Bienvenida} representa una ventana de bienvenida para la
+ * aplicación. Proporciona un mensaje de bienvenida y una opción para cargar una
+ * sopa de letras.
  *
- * @author Chris
+ * @autor Chris
  */
 public class Bienvenida extends javax.swing.JFrame {
 
     /**
-     * Creates new form Bienvenida
+     * Crea una nueva instancia de la clase {@code Bienvenida}. Inicializa los
+     * componentes y configura la ventana.
      */
     public Bienvenida() {
         initComponents();
@@ -130,19 +134,23 @@ public class Bienvenida extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Acción realizada al presionar el botón "Siguiente". Muestra un mensaje de
+     * advertencia y abre la ventana de carga.
+     *
+     * @param evt el evento de acción
+     */
     private void botonSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSigActionPerformed
         JOptionPane.showMessageDialog(null, "Debes de cargar una sopa de letras antes de comenzar el programa!");
-        
+
         this.setVisible(false);
-        
+
         Bienvenida b = new Bienvenida();
-        
-        
+
         Cargar cargar = new Cargar();
 
         cargar.setVisible(true);
-        
+
     }//GEN-LAST:event_botonSigActionPerformed
 
     /**

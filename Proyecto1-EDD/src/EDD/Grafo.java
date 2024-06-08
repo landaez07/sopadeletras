@@ -13,7 +13,7 @@ import org.graphstream.graph.implementations.SingleGraph;
 
 /**
  *
- * @author Chris
+ * @author pedro
  */
 public class Grafo {
 
@@ -216,45 +216,45 @@ public class Grafo {
         return false;
     }
 
-public void visualizarArbol(Nodo[] nodosVisitados) {
-    // Crear un grafo vacío
-    Graph graph = new SingleGraph("Árbol de recorrido");
+    public void visualizarArbol(Nodo[] nodosVisitados) {
+        // Crear un grafo vacío
+        Graph graph = new SingleGraph("Árbol de recorrido");
 
-    // Crear un mapa para asignar identificadores únicos a los nodos
-    Map<String, Node> nodeMap = new HashMap<>();
+        // Crear un mapa para asignar identificadores únicos a los nodos
+        Map<String, Node> nodeMap = new HashMap<>();
 
-    // Agregar nodos al grafo
-    for (int i = 0; i < nodosVisitados.length; i++) {
-        try {
-            String letra = nodosVisitados[i].getLetras();
-            String nodeId = letra + i; // Crear una clave única para cada nodo
-            Node node = graph.addNode(nodeId);
-            nodeMap.put(nodeId, node);
-            node.setAttribute("ui.label", letra); // Agregar etiqueta al nodo
-            node.setAttribute("ui.style", "fill-color: rgb(255, 255, 255);"); // Agregar estilo al nodo
-        } catch (Exception e) {
-            // Manejar la excepción
+        // Agregar nodos al grafo
+        for (int i = 0; i < nodosVisitados.length; i++) {
+            try {
+                String letra = nodosVisitados[i].getLetras();
+                String nodeId = letra + i; // Crear una clave única para cada nodo
+                Node node = graph.addNode(nodeId);
+                nodeMap.put(nodeId, node);
+                node.setAttribute("ui.label", letra); // Agregar etiqueta al nodo
+                node.setAttribute("ui.style", "fill-color: rgb(255, 255, 255);"); // Agregar estilo al nodo
+            } catch (Exception e) {
+                // Manejar la excepción
+            }
         }
-    }
 
-    // Agregar aristas al grafo
-    for (int i = 0; i < nodosVisitados.length - 1; i++) {
-        try {
-            String letra1 = nodosVisitados[i].getLetras();
-            String letra2 = nodosVisitados[i + 1].getLetras();
-            String nodeId1 = letra1 + i;
-            String nodeId2 = letra2 + (i + 1);
-            Node node1 = nodeMap.get(nodeId1);
-            Node node2 = nodeMap.get(nodeId2);
-            graph.addEdge(nodeId1 + "-" + nodeId2, node1, node2);
-        } catch (Exception e) {
-            // Manejar la excepción
+        // Agregar aristas al grafo
+        for (int i = 0; i < nodosVisitados.length - 1; i++) {
+            try {
+                String letra1 = nodosVisitados[i].getLetras();
+                String letra2 = nodosVisitados[i + 1].getLetras();
+                String nodeId1 = letra1 + i;
+                String nodeId2 = letra2 + (i + 1);
+                Node node1 = nodeMap.get(nodeId1);
+                Node node2 = nodeMap.get(nodeId2);
+                graph.addEdge(nodeId1 + "-" + nodeId2, node1, node2);
+            } catch (Exception e) {
+                // Manejar la excepción
+            }
         }
+
+        System.setProperty("org.graphstream.ui", "swing");
+
+        // Visualizar el grafo
+        graph.display();
     }
-
-    System.setProperty("org.graphstream.ui", "swing");
-
-    // Visualizar el grafo
-    graph.display();
-}
 }

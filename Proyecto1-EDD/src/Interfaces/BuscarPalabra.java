@@ -8,15 +8,23 @@ package Interfaces;
 import javax.swing.JOptionPane;
 
 /**
+ * La clase {@code BuscarPalabra} representa la ventana de búsqueda de palabras
+ * en la sopa de letras utilizando el algoritmo de profundidad o amplitud.
  *
- * @author Chris
+ * @autor Chris
  */
 public class BuscarPalabra extends javax.swing.JFrame {
 
+    /**
+     * La instancia de la ventana de carga de archivos.
+     */
     public static Cargar v1;
 
     /**
-     * Creates new form BuscarPalabra
+     * Crea una nueva instancia de la clase {@code BuscarPalabra}. Inicializa
+     * los componentes y configura la ventana.
+     *
+     * @param v1 la instancia de la ventana de carga
      */
     public BuscarPalabra(Cargar v1) {
         initComponents();
@@ -38,7 +46,6 @@ public class BuscarPalabra extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonAtras = new javax.swing.JButton();
         icon = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -47,8 +54,6 @@ public class BuscarPalabra extends javax.swing.JFrame {
         Buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         palabras = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,11 +72,6 @@ public class BuscarPalabra extends javax.swing.JFrame {
         icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Lupa.png"))); // NOI18N
         jPanel1.add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 60, 60));
 
-        jLabel3.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel3.setText("Tiempo requerido:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 150, 30));
-
         Titulo.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         Titulo.setForeground(new java.awt.Color(51, 51, 255));
         Titulo.setText("Buscar palabras");
@@ -84,13 +84,13 @@ public class BuscarPalabra extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel5.setText("se utilizará Depth First Search:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 480, 30));
+        jLabel5.setText("se utilizará Depth First Search ó Breadth First Search:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 480, 30));
 
-        jLabel6.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 204));
         jLabel6.setText("Palabras encontradas:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 200, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 200, 30));
 
         Buscar1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         Buscar1.setText("Buscar por DFS");
@@ -99,7 +99,7 @@ public class BuscarPalabra extends javax.swing.JFrame {
                 Buscar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 160, 40));
+        jPanel1.add(Buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 160, 40));
 
         Buscar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         Buscar.setText("Buscar por BFS");
@@ -108,19 +108,13 @@ public class BuscarPalabra extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 170, 40));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 160, 40));
 
         palabras.setColumns(20);
         palabras.setRows(5);
         jScrollPane1.setViewportView(palabras);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 300, 140));
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 300, 140));
 
         background.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.png"))); // NOI18N
@@ -140,7 +134,12 @@ public class BuscarPalabra extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Acción realizada al presionar el botón "Atras". Oculta la ventana actual
+     * y muestra la ventana principal del menú.
+     *
+     * @param evt el evento de acción
+     */
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.setVisible(false);
 
@@ -149,9 +148,15 @@ public class BuscarPalabra extends javax.swing.JFrame {
         menu.setVisible(true);
 
     }//GEN-LAST:event_botonAtrasActionPerformed
-
+    /**
+     * Acción realizada al presionar el botón "Buscar utilizando el algoritmo de
+     * profundidad". Realiza la búsqueda de palabras en la sopa de letras
+     * utilizando el algoritmo de profundidad y muestra los resultados en el
+     * área de texto.
+     *
+     * @param evt el evento de acción
+     */
     private void Buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar1ActionPerformed
-        // TODO add your handling code here:
         long startTime = System.currentTimeMillis();
 
 // Código a medir
@@ -169,9 +174,15 @@ public class BuscarPalabra extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
     }//GEN-LAST:event_Buscar1ActionPerformed
-
+    /**
+     * Acción realizada al presionar el botón "Buscar utilizando el algoritmo de
+     * amplitud". Realiza la búsqueda de palabras en la sopa de letras
+     * utilizando el algoritmo de amplitud y muestra los resultados en el área
+     * de texto.
+     *
+     * @param evt el evento de acción
+     */
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
         long startTime = System.currentTimeMillis();
 
         this.palabras.setText("");
@@ -231,14 +242,11 @@ public class BuscarPalabra extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JButton botonAtras;
     private javax.swing.JLabel icon;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea palabras;
     // End of variables declaration//GEN-END:variables
 }
